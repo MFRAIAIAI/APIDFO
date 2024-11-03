@@ -27,66 +27,6 @@
     <button type="submit">Submit</button>
   </form>
 
-  <!-- JavaScript Code -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Select the form element
-      const form = document.getElementById("dfoForm");
-
-      // Add an event listener for form submission
-      form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        // Collect data from the form inputs
-        const cvrNumber = document.getElementById("cvr_number").value;
-        const customerName = document.getElementById("customer_name").value;
-        const customerEmail = document.getElementById("customer_email").value;
-        const customerPhone = document.getElementById("customer_phone").value;
-        const packageValue = parseInt(document.getElementById("package").value); // Ensure package is an integer
-
-        // Construct the payload
-        const data = {
-          cvr_number: cvrNumber,
-          customer_name: customerName,
-          customer_email: customerEmail,
-          customer_phone: customerPhone,
-          package: packageValue
-        };
-
-        // Define API endpoint and headers
-        const apiUrl = "https://api.dfo.dk/add_customer/"; // Replace with actual API endpoint
-        const headers = {
-          "Content-Type": "application/json"
-        };
-
-        // Make the API request
-        fetch(apiUrl, {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(data)
-        })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then(result => {
-          // Handle successful response
-          console.log("Success:", result);
-          alert("Form submitted successfully!");
-
-          // Optionally, reset the form
-          form.reset();
-        })
-        .catch(error => {
-          // Handle errors
-          console.error("Error:", error);
-          alert("There was an error submitting the form. Please :D again.");
-        });
-      });
-    });
-  </script>
 
 </body>
 </html>
